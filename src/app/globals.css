@@ -2,13 +2,7 @@
     --background: #ffffff;
     --foreground: #171717;
     --font-ubuntu: 'Ubuntu', sans-serif;
-	--box-shadow: 0 0 20px #000000;
-}
-
-html,
-body {
-    max-width: 100vw;
-    overflow-x: hidden;
+    --box-shadow: 0 0 20px #000000;
 }
 
 body {
@@ -36,4 +30,10 @@ a {
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
 }

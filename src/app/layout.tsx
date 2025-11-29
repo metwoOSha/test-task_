@@ -22,7 +22,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${geistUbuntu.variable}`}>
-                <header>
+                <header className="header">
                     <Header />
                 </header>
                 <main>{children}</main>
