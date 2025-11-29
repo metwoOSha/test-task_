@@ -18,7 +18,7 @@ export default async function SelectedBreweryPage({ params }: { params: Promise<
                         <span className={cls.type}>{brewery.brewery_type.toUpperCase()}</span>
 
                         <div className={cls.infoBlock}>
-                            <p className={cls.label}>Адрес:</p>
+                            <p className={cls.label}>Address:</p>
                             <p className={cls.text}>
                                 {brewery.address_1}, {brewery.city}, {brewery.state_province},{' '}
                                 {brewery.postal_code}
@@ -26,12 +26,12 @@ export default async function SelectedBreweryPage({ params }: { params: Promise<
                         </div>
 
                         <div className={cls.infoBlock}>
-                            <p className={cls.label}>Страна:</p>
+                            <p className={cls.label}>Country:</p>
                             <p className={cls.text}>{brewery.country}</p>
                         </div>
 
                         <div className={cls.infoBlock}>
-                            <p className={cls.label}>Координаты:</p>
+                            <p className={cls.label}>Coordinates:</p>
                             <p className={cls.text}>
                                 {brewery.latitude}, {brewery.longitude}
                             </p>
@@ -39,7 +39,7 @@ export default async function SelectedBreweryPage({ params }: { params: Promise<
 
                         {brewery.phone && (
                             <div className={cls.infoBlock}>
-                                <p className={cls.label}>Телефон:</p>
+                                <p className={cls.label}>Phone:</p>
                                 <a href={`tel:${brewery.phone}`} className={cls.link}>
                                     {brewery.phone}
                                 </a>
@@ -48,7 +48,7 @@ export default async function SelectedBreweryPage({ params }: { params: Promise<
 
                         {brewery.website_url && (
                             <div className={cls.infoBlock}>
-                                <p className={cls.label}>Веб-сайт:</p>
+                                <p className={cls.label}>WebSite:</p>
                                 <a href={brewery.website_url} target="_blank" className={cls.link}>
                                     {brewery.website_url}
                                 </a>
@@ -56,7 +56,7 @@ export default async function SelectedBreweryPage({ params }: { params: Promise<
                         )}
                     </div>
                     <div className={cls.map}>
-                        <p>Our location</p>
+                        <p>Our location:</p>
                         <div className={cls.mapBlock}>
                             <Map latitude={brewery.latitude} longitude={brewery.longitude} />
                         </div>

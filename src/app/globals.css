@@ -16,6 +16,8 @@ body {
     font-family: var(--font-ubuntu);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #1c1c1c;
+    background: linear-gradient(90deg, #1c1c1c 0%, #3a3a3a 100%);
 }
 
 * {
