@@ -2,33 +2,39 @@
 
 import Card from '@/components/Card/Card';
 import useBreweriesStore from '@/store/breweryStore';
-// import Link from 'next/link';
 
 import cls from './page.module.css';
+import DeleteButton from '@/components/DeleteButton/DeleteButton';
+import { useEffect } from 'react';
 
 export default function BreweryPage() {
     const breweries = useBreweriesStore((state) => state.breweries);
-    const deleteSelectItems = useBreweriesStore((state) => state.deleteSelectItems);
+    const clearSelect = useBreweriesStore((state) => state.clearSelect);
+
+    useEffect(() => {
+        clearSelect();
+    }, [clearSelect]);
 
     return (
         <>
             <div className="conteiner">
-                <div className={cls.grid}>
-                    {breweries.slice(0, 5).map((item) => (
-                        <div key={item.id}>
-                            {/* <Link key={item.id} href={`/brewery/${item.id}`}>
-                        <div>{item.name}</div>
-                    </Link> */}
-                            <Card
-                                id={item.id}
-                                name={item.name}
-                                country={item.country}
-                                city={item.city}
-                            />
-                        </div>
-                    ))}
+                <div className={cls.list}>
+                    <div className={cls.grid}>
+                        {breweries.slice(0, 5).map((item) => (
+                            <div key={item.id}>
+                                <Card
+                                    id={item.id}
+                                    name={item.name}
+                                    country={item.country}
+                                    city={item.city}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    <div className={cls.deleteBtn}>
+                        <DeleteButton />
+                    </div>
                 </div>
-                <button onClick={deleteSelectItems}>Delete</button>
             </div>
         </>
     );

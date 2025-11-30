@@ -42,6 +42,9 @@ export const useBreweriesStore = create<BreweryState>()(
                 set({ selected: [...selected, id] });
             }
         },
+		clearSelect: () => {
+			set({selected:[]})
+		},
         deleteSelectItems: () => {
             const breweries = get().breweries;
             const selected = get().selected;

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
 import cls from './Header.module.css';
-import DeleteButton from '../DeleteButton/DeleteButton';
 
 export default function Header() {
     return (
@@ -15,9 +14,6 @@ export default function Header() {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className={cls.deleteBtn}>
-                <DeleteButton />
             </div>
         </div>
     );

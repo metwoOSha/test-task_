@@ -14,9 +14,7 @@
     border: none;
     outline: none;
     background: #fff;
-    svg {
-        fill: #373737;
-    }
+    cursor: pointer;
 }
 
 .btn:hover svg {
