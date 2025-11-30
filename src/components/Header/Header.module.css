@@ -1,4 +1,5 @@
 .header {
+    position: relative;
     width: 100%;
     background-color: var(--background);
     font-size: 20px;
@@ -24,4 +25,10 @@
     position: absolute;
     right: -80px;
     top: 0;
+}
+
+.deleteBtn {
+    position: absolute;
+    top: 96px;
+    right: 40px;
 }
