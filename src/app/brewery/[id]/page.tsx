@@ -5,7 +5,7 @@ import cls from './SelectedBreweryPage.module.css';
 export default async function SelectedBreweryPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
 
-    const res = await fetch(`https://api.openbrewerydb.org/v1/breweries/${id}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/breweries/${id}`);
     const brewery = await res.json();
 
     return (

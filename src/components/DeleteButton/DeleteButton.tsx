@@ -5,11 +5,11 @@ import cls from './DeleteButton.module.css';
 
 export default function DeleteButton() {
     const selected = useBreweriesStore((state) => state.selected);
-    const deleteSelectItems = useBreweriesStore((state) => state.deleteSelectItems);
-    
-	return (
+    const deleteSelected = useBreweriesStore((state) => state.deleteSelected);
+
+    return (
         selected.length > 0 && (
-            <div className={cls.delete} onClick={deleteSelectItems}>
+            <div className={cls.delete} onClick={deleteSelected}>
                 <div>
                     <p>Selected Items: {selected.length}</p>
                 </div>

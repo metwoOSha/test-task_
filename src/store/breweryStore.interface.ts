@@ -15,17 +15,17 @@ export interface Brewery {
     website_url: string | null;
     street: string | null;
 }
-
 export interface BreweryState {
-    breweries: Brewery[];
+    visibleBreweries: Brewery[];
+    bufferBreweries: Brewery[];
     selected: string[];
-    visible: Brewery[];
     page: number;
     loading: boolean;
     errorMsg: string;
     fetchDataBreweries: () => Promise<void>;
     toggleSelect: (id: string) => void;
     clearSelect: () => void;
-    deleteSelectItems: () => void;
-    setPage: () => void;
+    deleteSelected: () => Promise<void>;
+    refillVisible: () => Promise<void>;
+    shiftBreweries: () => Promise<void>;
 }

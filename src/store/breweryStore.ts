@@ -4,37 +4,33 @@ import { Brewery, BreweryState } from './breweryStore.interface';
 
 export const useBreweriesStore = create<BreweryState>()(
     devtools((set, get) => ({
-        breweries: [],
+        visibleBreweries: [],
+        bufferBreweries: [],
         selected: [],
-        visible: [],
         page: 1,
         loading: false,
         errorMsg: '',
         fetchDataBreweries: async () => {
             set({ loading: true });
-            const { page } = get();
-
+            const { page, bufferBreweries } = get();
             try {
                 const res = await fetch(
-                    `https://api.openbrewerydb.org/v1/breweries?per_page=15&page=${page}`
+                    `${process.env.NEXT_PUBLIC_API_URL}/breweries?per_page=15&page=${page}`
                 );
-
-                if (!res.ok) {
-                    throw new Error('Error fetch data');
-                }
+                if (!res.ok) throw new Error('Error fetch data');
                 const data: Brewery[] = await res.json();
-
-                set((state) => ({
-                    breweries: [...state.breweries, ...data],
-                }));
+                set({
+                    bufferBreweries: [...bufferBreweries, ...data],
+                    page: page + 1,
+                });
             } catch (err) {
                 set({ errorMsg: `${err}` });
             } finally {
-                set({ loading: true });
+                set({ loading: false });
             }
         },
         toggleSelect: (id) => {
-            const selected = get().selected;
+            const { selected } = get();
             if (selected.includes(id)) {
                 set({ selected: selected.filter((item) => item !== id) });
             } else {
@@ -42,23 +38,49 @@ export const useBreweriesStore = create<BreweryState>()(
             }
         },
         clearSelect: () => {
-            set({ selected: [] });
+            if (get().selected.length > 0) {
+                set({ selected: [] });
+            }
         },
-        deleteSelectItems: () => {
-            const breweries = get().breweries;
-            const selected = get().selected;
+        deleteSelected: async () => {
+            const { visibleBreweries, selected } = get();
+            const filtered = visibleBreweries.filter((item) => !selected.includes(item.id));
+            set({ visibleBreweries: filtered, selected: [] });
+            await get().refillVisible();
+        },
+        refillVisible: async () => {
+            const { visibleBreweries, bufferBreweries } = get();
+            const missing = 15 - visibleBreweries.length;
+
+            if (missing > 0) {
+                if (bufferBreweries.length < missing) {
+                    await get().fetchDataBreweries();
+                }
+                const next = get().bufferBreweries.slice(0, missing);
+
+                set({
+                    visibleBreweries: [...visibleBreweries, ...next],
+                    bufferBreweries: get().bufferBreweries.slice(missing),
+                });
+            }
+        },
+        shiftBreweries: async () => {
+            const { visibleBreweries, bufferBreweries } = get();
+            const trimmed = visibleBreweries.slice(5);
+            if (bufferBreweries.length < 5) {
+                await get().fetchDataBreweries();
+            }
+
+            const next = get().bufferBreweries.slice(0, 5);
             set({
-                breweries: breweries.filter((item) => !selected.includes(item.id)),
+                visibleBreweries: [...trimmed, ...next],
+                bufferBreweries: get().bufferBreweries.slice(5),
             });
-            set({ selected: [] });
-        },
-        setPage: () => {
-            const currentPage = get().page;
-            set({ page: currentPage + 1 });
         },
     }))
 );
 
 useBreweriesStore.getState().fetchDataBreweries();
+useBreweriesStore.getState().refillVisible();
 
 export default useBreweriesStore;

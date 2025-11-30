@@ -1,8 +1,16 @@
 .grid {
-    margin-top: 30px;
+    margin: 30px 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+}
+
+.card {
+    cursor: pointer;
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
 }
 
 .list {
