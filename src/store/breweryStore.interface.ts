@@ -27,4 +27,5 @@ export interface BreweryState {
     toggleSelect: (id: string) => void;
     clearSelect: () => void;
     deleteSelectItems: () => void;
+    setPage: () => void;
 }

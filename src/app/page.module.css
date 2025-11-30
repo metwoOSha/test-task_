@@ -9,8 +9,9 @@
     position: relative;
 }
 
-.deleteBtn {
-    position: absolute;
-    top: 0;
-    right: -200px;
+.loading {
+    padding: 40px;
+    text-align: center;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
 }

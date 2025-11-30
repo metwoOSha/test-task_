@@ -26,12 +26,11 @@ export const useBreweriesStore = create<BreweryState>()(
 
                 set((state) => ({
                     breweries: [...state.breweries, ...data],
-                    page: state.page + 1,
                 }));
             } catch (err) {
                 set({ errorMsg: `${err}` });
             } finally {
-                set({ loading: false });
+                set({ loading: true });
             }
         },
         toggleSelect: (id) => {
@@ -42,9 +41,9 @@ export const useBreweriesStore = create<BreweryState>()(
                 set({ selected: [...selected, id] });
             }
         },
-		clearSelect: () => {
-			set({selected:[]})
-		},
+        clearSelect: () => {
+            set({ selected: [] });
+        },
         deleteSelectItems: () => {
             const breweries = get().breweries;
             const selected = get().selected;
@@ -52,6 +51,10 @@ export const useBreweriesStore = create<BreweryState>()(
                 breweries: breweries.filter((item) => !selected.includes(item.id)),
             });
             set({ selected: [] });
+        },
+        setPage: () => {
+            const currentPage = get().page;
+            set({ page: currentPage + 1 });
         },
     }))
 );
