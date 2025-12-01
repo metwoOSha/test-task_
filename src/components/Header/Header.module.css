@@ -4,6 +4,7 @@
     background-color: var(--background);
     font-size: 20px;
     font-weight: 700;
+    text-align: center;
     box-shadow: var(--box-shadow);
 }
 
@@ -27,3 +28,21 @@
     top: 0;
 }
 
+@media screen and (max-width: 680px) {
+    .img {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .header {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        padding: 0 10px;
+        font-size: 12px;
+    }
+}

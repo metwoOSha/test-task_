@@ -1,5 +1,5 @@
 .wrapper {
-    height: calc(100vh - 66px);
+    min-height: calc(100vh - 66px);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -95,6 +95,30 @@
 
 @media screen and (max-width: 820px) {
     .wrapper {
+        height: 100%;
+        padding: 20px 0;
         flex-direction: column;
+        justify-content: center;
+    }
+    .card {
+        width: 90%;
+    }
+    .map {
+        width: 90%;
+    }
+    .noData {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .wrapper {
+        gap: 20px;
+    }
+    .card {
+        width: 100%;
+    }
+    .map {
+        width: 100%;
     }
 }

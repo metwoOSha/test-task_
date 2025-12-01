@@ -28,12 +28,14 @@ export default async function SelectedBreweryPage({ params }: { params: Promise<
                     <p className={cls.text}>{brewery.country}</p>
                 </div>
 
-                <div className={cls.infoBlock}>
-                    <p className={cls.label}>Coordinates:</p>
-                    <p className={cls.text}>
-                        {brewery.latitude}, {brewery.longitude}
-                    </p>
-                </div>
+                {brewery.latitude && brewery.longitude && (
+                    <div className={cls.infoBlock}>
+                        <p className={cls.label}>Coordinates:</p>
+                        <p className={cls.text}>
+                            {brewery.latitude}, {brewery.longitude}
+                        </p>
+                    </div>
+                )}
 
                 {brewery.phone && (
                     <div className={cls.infoBlock}>

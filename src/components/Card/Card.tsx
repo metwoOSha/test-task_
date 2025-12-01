@@ -36,7 +36,17 @@ export default function Card({ id, name, country, city }: CardProps) {
             <p className={cls.city}>
                 {country}, {city}
             </p>
-            <Image src="/beerCard.png" alt="beer-card" width={150} height={150} />
+            <div className={cls.img}>
+                <Image
+                    src="/beerCard.png"
+                    alt="beer-card"
+                    fill
+                    style={{ objectFit: 'contain' }}
+                    loading="eager"
+                    sizes="(max-width: 768px) 100vw, 150px"
+                />
+            </div>
+
             <Link href={`/brewery/${id}`} className={cls.link}>
                 <span className={cls.more}>More details ➜</span>
             </Link>
