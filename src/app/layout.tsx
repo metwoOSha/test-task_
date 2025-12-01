@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     title: 'Brewery Explorer',
     description:
         'Interactive brewery list with multi‑selection, deletion, and lazy scroll. Discover and explore breweries easily.',
+    icons: {
+        icon: '/beer.png',
+    },
 };
 
 export default function RootLayout({
