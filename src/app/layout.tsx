@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description:
         'Interactive brewery list with multi‑selection, deletion, and lazy scroll. Discover and explore breweries easily.',
     icons: {
-        icon: '/beer.png',
+        icon: '/favicon.png',
     },
 };
 
